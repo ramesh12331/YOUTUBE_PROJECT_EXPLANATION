@@ -1,3 +1,77 @@
+# 1️⃣ High-Level Architecture Diagram (Interview Friendly)
+                   ┌───────────────────┐
+                 │       App.jsx      │
+                 │ (Router + Layout)  │
+                 └─────────┬─────────┘
+                           │
+        ┌──────────────────┴──────────────────┐
+        │                                     │
+┌───────▼────────┐                   ┌────────▼────────┐
+│    Head.jsx     │                   │     Body.jsx     │
+│  (Navbar)       │                   │ (Main Wrapper)   │
+│  ☰ Logo Search  │                   └────────┬────────┘
+│  dispatch()     │                            │
+└───────┬────────┘            ┌────────────────┴──────────────┐
+        │                     │                               │
+        │             ┌───────▼────────┐             ┌────────▼─────────┐
+        │             │  Sidebar.jsx   │             │ MainContainer.jsx │
+        │             │ (Nav Menu)     │             │  (Home Page)      │
+        │             │ useSelector()  │             └────────┬─────────┘
+        │             └────────────────┘                      │
+        │                                                      │
+        │                               ┌──────────────────────┴───────────────┐
+        │                               │                                      │
+        │                       ┌───────▼────────┐                   ┌────────▼────────┐
+        │                       │ ButtonList.jsx │                   │ VideoContainer.jsx│
+        │                       │ (Categories)   │                   │ (Fetch Videos)    │
+        │                       └────────────────┘                   └────────┬────────┘
+        │                                                                          │
+        │                                                           ┌─────────────▼─────────────┐
+        │                                                           │       VideoCard.jsx        │
+        │                                                           │  (Thumbnail, Title, Views) │
+        │                                                           └───────────────────────────┘
+
+# 2️⃣ Watch Page Architecture
+             ┌──────────────────────────┐
+             │       WatchPage.jsx       │
+             └────────────┬─────────────┘
+                          │
+        ┌─────────────────┼──────────────────┐
+        │                 │                  │
+┌───────▼────────┐ ┌──────▼────────┐ ┌───────▼────────────┐
+│ Video Player   │ │ Video Details │ │ Recommended Videos │
+│ (iframe)       │ │ Title, Likes  │ │ VideoCard (reuse)  │
+└────────────────┘ └───────────────┘ └────────────────────┘
+                          │
+                  ┌───────▼────────┐
+                  │  Comments       │
+                  └────────────────┘
+# 3️⃣ Redux & Data Flow Diagram (Very Important ⭐)
+User Click ☰
+    │
+    ▼
+Head.jsx
+    │ dispatch(toggleMenu)
+    ▼
+Redux Store (appSlice)
+    │
+    ▼
+Sidebar.jsx ── useSelector(isMenuOpen)
+
+# 4️⃣ API Data Flow Diagram
+YouTube Data API
+        │
+        ▼
+ VideoContainer / SearchResults
+        │
+        ▼
+     VideoCard
+        │
+        ▼
+    WatchPage
+# 5️⃣ 1-Line Interview Explanation (Memorize This)
+
+“The app uses a component-based architecture where Header controls global UI state via Redux, Body manages layout, and video data flows from YouTube API into reusable VideoCard components with routing separating Home and Watch pages.”
 # VideoStream — Interview Explanation & Q&A
 
 This README is written to help you present the VideoStream project during a job interview. It contains a concise project summary, features, tech stack, component map, how Redux is used for the hamburger/menu state, YouTube API notes, run/demo instructions, and a curated list of likely interview questions with model answers you can rehearse.
