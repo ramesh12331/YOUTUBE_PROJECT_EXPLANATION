@@ -1,3 +1,4 @@
+
 # VideoStream — Interview Explanation & Q&A
 
 This README is written to help you present the VideoStream project during a job interview. It contains a concise project summary, features, tech stack, component map, how Redux is used for the hamburger/menu state, YouTube API notes, run/demo instructions, and a curated list of likely interview questions with model answers you can rehearse.
